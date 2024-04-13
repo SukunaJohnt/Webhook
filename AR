@@ -86,7 +86,7 @@ local embed = {
         }
     },
     ["footer"] = {
-        ["text"] = "** "..game:GetService("Players").LocalPlayer.PlayerGui.HUD.Exp.Text .. "**"
+        ["text"] = "**"..game:GetService("Players").LocalPlayer.PlayerGui.HUD.Exp.Text .. "**"
     }
 }
 SendMessageEMBED(url, embed)
