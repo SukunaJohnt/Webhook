@@ -1,0 +1,98 @@
+function SendMessage(url, message)
+    local http = game:GetService("HttpService")
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    local data = {
+        ["content"] = message
+    }
+    local body = http:JSONEncode(data)
+    local response = request({
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = body
+    })
+    print("Sent")
+end
+
+function SendMessageEMBED(url, embed)
+    local http = game:GetService("HttpService")
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    local data = {
+        ["embeds"] = {
+            {
+                ["title"] = embed.title,
+                ["description"] = embed.description,
+                ["color"] = embed.color,
+                ["fields"] = embed.fields,
+                ["footer"] = {
+                    ["text"] = embed.footer.text
+                }
+            }
+        }
+    }
+    local body = http:JSONEncode(data)
+    local response = request({
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = body
+    })
+    print("Sent")
+end
+
+
+--Examples 
+local on = true
+
+ while on == true do
+local url = "https://discord.com/api/webhooks/1208806043841470494/m1rYd75oloaNm7yTnyj2Nnf4DhxKvWQ3uqpVUtuPZk9EKmWHYwTns_e3RpElDS_ncpOE"
+local id = "770857166004944946" 
+
+if game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.Visible == true then
+local items = {}
+local player = game.Players.LocalPlayer
+for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.ScrollingFrame:GetChildren()) do 
+ if v:IsA("Frame")  then 
+    table.insert(items,"\n" .. v.Name)
+end 
+end 
+
+local ammount = {}
+local player = game.Players.LocalPlayer
+for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.ScrollingFrame:GetDescendants()) do 
+ if  v:IsA("TextLabel") and v.Name == "Amout" and v.Parent.Name ~= "Unknow" then 
+    table.insert(ammount,"\n" .. v.Parent.Name .. ": " ..  v.Text)
+end 
+end 
+SendMessage(url, "<@" .. tostring(id) .. ">")
+
+
+local embed = {
+    ["title"] = "Webhook Drop Items [ Capsule Detector ]",
+    ["description"] = "Username: ||" .. game.Players.LocalPlayer.Name .. "||" ,
+    ["color"] = 65280,
+    ["fields"] = {
+        {
+            ["name"] = "**Items Dropped:**",
+            ["value"] =  table.concat(items, ",")
+        },
+        {
+            ["name"] = "**Ammount Items Dropped:**",
+            ["value"] = table.concat(ammount, ",")
+        }
+    },
+    ["footer"] = {
+        ["text"] = "** "..game:GetService("Players").LocalPlayer.PlayerGui.HUD.Exp.Text .. "**"
+    }
+}
+SendMessageEMBED(url, embed)
+wait(.2)
+on = false
+-- print('stop webhook')
+end
+wait()
+end
