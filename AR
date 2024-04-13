@@ -72,7 +72,7 @@ SendMessage(url, "<@" .. tostring(id) .. ">")
 
 
 local embed = {
-    ["title"] = "Webhook Drop Items [ Capsule Detector ]",
+    ["title"] = "Webhook Drop Items [ Anime Rangers - Private ]",
     ["description"] = "Username: ||" .. game.Players.LocalPlayer.Name .. "||" ,
     ["color"] = 65280,
     ["fields"] = {
@@ -86,7 +86,7 @@ local embed = {
         }
     },
     ["footer"] = {
-        ["text"] = "**"..game:GetService("Players").LocalPlayer.PlayerGui.HUD.Exp.Text .. "**"
+        ["text"] = game:GetService("Players").LocalPlayer.PlayerGui.HUD.Exp.Text
     }
 }
 SendMessageEMBED(url, embed)
