@@ -52,11 +52,11 @@ local on = true
 local url = "https://discord.com/api/webhooks/1208806043841470494/m1rYd75oloaNm7yTnyj2Nnf4DhxKvWQ3uqpVUtuPZk9EKmWHYwTns_e3RpElDS_ncpOE"
 local id = "770857166004944946" 
 local world = game:GetService("Players").LocalPlayer.PlayerGui.InGame.Map.Text
-if game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.Visible == true then
+if game:GetService("Players").LocalPlayer.PlayerGui.EndGame.Enabled == true then
 
 local items = {}
 local player = game.Players.LocalPlayer
-for i,v in pairs( game:GetService("Players").A1tForSmurfing.PlayerGui.EndGame.Main.Items:GetChildren()) do 
+for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.EndGame.Main.Items:GetChildren()) do 
  if v:IsA("Frame")  then 
     table.insert(items,"\n" .. v.Name)
 end 
@@ -64,7 +64,7 @@ end
 
 local ammount = {}
 local player = game.Players.LocalPlayer
-for i,v in pairs( game:GetService("Players").A1tForSmurfing.PlayerGui.EndGame.Main.Items:GetDescendants()) do 
+for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.EndGame.Main.Items:GetDescendants()) do 
  if  v:IsA("TextLabel") and v.Name == "Amount" and v.Parent.Name ~= "Temp" then 
     table.insert(ammount,"\n" .. v.Parent.Name .. ": " ..  v.Text)
 end 
