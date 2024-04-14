@@ -56,7 +56,7 @@ if game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.Visible == true
 
 local items = {}
 local player = game.Players.LocalPlayer
-for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.ScrollingFrame:GetChildren()) do 
+for i,v in pairs( game:GetService("Players").A1tForSmurfing.PlayerGui.EndGame.Main.Items:GetChildren()) do 
  if v:IsA("Frame")  then 
     table.insert(items,"\n" .. v.Name)
 end 
@@ -64,8 +64,8 @@ end
 
 local ammount = {}
 local player = game.Players.LocalPlayer
-for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.ScrollingFrame:GetDescendants()) do 
- if  v:IsA("TextLabel") and v.Name == "Amout" and v.Parent.Name ~= "Unknow" then 
+for i,v in pairs( game:GetService("Players").A1tForSmurfing.PlayerGui.EndGame.Main.Items:GetDescendants()) do 
+ if  v:IsA("TextLabel") and v.Name == "Amount" and v.Parent.Name ~= "Temp" then 
     table.insert(ammount,"\n" .. v.Parent.Name .. ": " ..  v.Text)
 end 
 end 
