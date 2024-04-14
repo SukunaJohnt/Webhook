@@ -18,7 +18,7 @@ end
 
 function SendMessageEMBED(url, embed)
     local http = game:GetService("HttpService")
-    local headers = {
+    local headers = {   
         ["Content-Type"] = "application/json"
     }
     local data = {
@@ -44,15 +44,28 @@ function SendMessageEMBED(url, embed)
     print("Sent")
 end
 
-
---Examples 
-local on = true
-
- while on == true do
+local world = game:GetService("Players").LocalPlayer.PlayerGui.InGame.Map.Text
 local url = "https://discord.com/api/webhooks/1208806043841470494/m1rYd75oloaNm7yTnyj2Nnf4DhxKvWQ3uqpVUtuPZk9EKmWHYwTns_e3RpElDS_ncpOE"
 local id = "770857166004944946" 
 
 if game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.Visible == true then
+
+    if game:GetService("Players").A1tForSmurfing.PlayerGui.HUD["Secret_Capsule"].Visible == false then 
+        game:GetService("Players").A1tForSmurfing.PlayerGui.HUD["Secret_Capsule"].Visible  = true
+        wait(.1)
+        local Player = game.Players.LocalPlayer
+        local vim = game:GetService("VirtualInputManager")
+        
+        local part =game:GetService("Players").LocalPlayer.PlayerGui.HUD["Secret_Capsule"].Background2.ScrollingFrame[world]
+        
+             local partCenterX = part.AbsolutePosition.X + (part.AbsoluteSize.X / 3)
+             local partCenterY = part.AbsolutePosition.Y + (part.AbsoluteSize.Y /1)
+        
+          vim:SendMouseButtonEvent(partCenterX, partCenterY, 0, true, game, 0)
+             vim:SendMouseButtonEvent(partCenterX, partCenterY, 0, false, game, 0)
+    end
+
+    
 local items = {}
 local player = game.Players.LocalPlayer
 for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.ScrollingFrame:GetChildren()) do 
@@ -68,11 +81,11 @@ for i,v in pairs( game:GetService("Players").LocalPlayer.PlayerGui.InGame.Ended.
     table.insert(ammount,"\n" .. v.Parent.Name .. ": " ..  v.Text)
 end 
 end 
-SendMessage(url, "<@" .. tostring(id) .. ">")
+--SendMessage(url, "<@" .. tostring(id) .. ">")
 
 
 local embed = {
-    ["title"] = "Webhook Drop Items [ Anime Rangers - Private ]",
+    ["title"] = "Webhook Drop Items [ Capsule Detector ]",
     ["description"] = "Username: ||" .. game.Players.LocalPlayer.Name .. "||" ,
     ["color"] = 65280,
     ["fields"] = {
@@ -83,6 +96,10 @@ local embed = {
         {
             ["name"] = "**Ammount Items Dropped:**",
             ["value"] = table.concat(ammount, ",")
+        },
+        {
+            ["name"] = "**Secret Capsule Dropped:**",
+            ["value"] = game:GetService("Players").LocalPlayer.PlayerGui.HUD["Secret_Capsule"].Need.Text
         }
     },
     ["footer"] = {
@@ -90,9 +107,5 @@ local embed = {
     }
 }
 SendMessageEMBED(url, embed)
-wait(.2)
-on = false
--- print('stop webhook')
 end
-wait()
-end
+
